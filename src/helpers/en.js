@@ -1,0 +1,20 @@
+const constants = {
+    EMAIL_ADDRESS_LABEL: 'Email address',
+    PASSWORD_FIELD_LABEL: 'Password',
+    USERNAME_FIELD_TEXT: 'Username',
+    SUBMIT_BUTTON_LABEL: 'Submit',
+    REGISTER_LINK_TEXT: 'Register',
+    LOGIN_LINK_TEXT: 'Login',
+    LOGOUT_LINK_TEXT: 'Logout',
+    SITE_BRAND_TITLE: 'Event Management',
+    EVENT_NAME_LABEL: 'Event Name',
+    EVENT_DATE_LABEL: 'Event Date',
+    EVENT_DESC_LABEL: 'Event Description',
+    EVENT_PRICE_LABEL: 'Event Price',
+    EVENT_TYPE_LABEL: 'Event Type',
+    EVENT_ACTIONS_LABEL: 'Actions',
+    CREATE_ACTIONS_LABEL: 'Create Event',
+    EDIT_ACTIONS_LABEL: 'Edit',
+    DELETE_ACTIONS_LABEL: 'Delete',
+}
+export default constants;
