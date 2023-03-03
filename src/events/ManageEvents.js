@@ -65,7 +65,9 @@ const ManageEvents = () => {
 
   const fetchEditEvent = (event_id_data) => {
     axios
-      .post('http://localhost/work/events/get_events_id.php', {event_id: event_id_data})
+      .post('http://localhost/work/events/get_events_id.php', {
+        event_id: event_id_data,
+      })
       .then((response) => {
         const result = response?.data;
         if (result?.status?.toString() === '1') {
@@ -79,11 +81,13 @@ const ManageEvents = () => {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   const fetchDeleteEvent = (event_id_data) => {
     axios
-      .post('http://localhost/work/events/delete_event.php', {event_id: event_id_data})
+      .post('http://localhost/work/events/delete_event.php', {
+        event_id: event_id_data,
+      })
       .then((response) => {
         const result = response?.data;
         if (result?.status?.toString() === '1') {
@@ -100,8 +104,8 @@ const ManageEvents = () => {
       .catch((error) => {
         console.log(error);
       });
-  }
-  
+  };
+
   return (
     <div className="App">
       <Header />
@@ -172,9 +176,13 @@ const ManageEvents = () => {
                             className="delete-btn"
                             type="button"
                             onClick={() => {
-                              if (window.confirm("Are you sure want to delete?") == true) {
+                              if (
+                                window.confirm(
+                                  'Are you sure want to delete?'
+                                ) == true
+                              ) {
                                 fetchDeleteEvent(rowData.event_id);
-                              } 
+                              }
                             }}
                           >
                             {constants.DELETE_ACTIONS_LABEL}
@@ -200,7 +208,7 @@ const ManageEvents = () => {
                 event_date: '',
                 event_desc: '',
                 event_price: 0,
-                event_type: 0,
+                event_type: '0',
                 terms: false,
               }}
               validationSchema={SignInSchema}
@@ -262,7 +270,8 @@ const ManageEvents = () => {
 
                   <Form.Group className="mb-3">
                     <Form.Control
-                      type="text"
+                      as="textarea"
+                      rows={3}
                       name="event_desc"
                       placeholder={constants.EVENT_DESC_LABEL}
                       onChange={handleChange}
@@ -273,22 +282,22 @@ const ManageEvents = () => {
                     ) : null}
                   </Form.Group>
 
-                  <ButtonGroup className="mb-2">
+                  <Form.Group  className="mb-3">
+                    <Form.Label>Event Type</Form.Label>
                     {eventTypeRadios.map((radio, idx) => (
-                      <ToggleButton
+                      <Form.Check
                         key={idx}
                         id={`radio-${idx}`}
                         type="radio"
                         variant="secondary"
+                        label={radio.name}
                         name="event_type"
                         value={radio.value}
                         checked={values.event_type === radio.value}
                         onChange={handleChange}
-                      >
-                        {radio.name}
-                      </ToggleButton>
+                      />
                     ))}
-                  </ButtonGroup>
+                  </Form.Group>
 
                   <Form.Group className="mb-3">
                     <Form.Control
@@ -338,11 +347,6 @@ const ManageEvents = () => {
               )}
             </Formik>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowAddEvent(false)}>
-              Close
-            </Button>
-          </Modal.Footer>
         </Modal>
 
         <Modal show={showEditEvent} onHide={() => setShowEditEvent(false)}>
@@ -421,7 +425,8 @@ const ManageEvents = () => {
 
                   <Form.Group className="mb-3">
                     <Form.Control
-                      type="text"
+                      as="textarea"
+                      rows={3}
                       name="event_desc"
                       value={values.event_desc}
                       placeholder={constants.EVENT_DESC_LABEL}
@@ -433,22 +438,22 @@ const ManageEvents = () => {
                     ) : null}
                   </Form.Group>
 
-                  <ButtonGroup className="mb-2">
+                  <Form.Group  className="mb-3">
+                    <Form.Label>Event Type</Form.Label>
                     {eventTypeRadios.map((radio, idx) => (
-                      <ToggleButton
+                      <Form.Check
                         key={idx}
                         id={`radio-${idx}`}
                         type="radio"
                         variant="secondary"
+                        label={radio.name}
                         name="event_type"
                         value={radio.value}
                         checked={values.event_type === radio.value}
                         onChange={handleChange}
-                      >
-                        {radio.name}
-                      </ToggleButton>
+                      />
                     ))}
-                  </ButtonGroup>
+                  </Form.Group>
 
                   <Form.Group className="mb-3">
                     <Form.Control
@@ -487,11 +492,6 @@ const ManageEvents = () => {
               )}
             </Formik>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowEditEvent(false)}>
-              Close
-            </Button>
-          </Modal.Footer>
         </Modal>
       </section>
     </div>
